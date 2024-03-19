@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import TodoItem from './TodoItem';
+import './App.css';
 
 const TodoList = () => {
   const [todos, setTodos] = useState([]);
@@ -19,20 +20,25 @@ const TodoList = () => {
 
   return (
     <div>
-      <input
-        type="text"
-        placeholder="Enter a todo"
-        value={inputValue}
-        onChange={(e) => setInputValue(e.target.value)}
-      />
-      <button onClick={handleAddTodo}>Add</button>
-      {todos.map((todo, index) => (
-        <TodoItem
-          key={index}
-          text={todo}
-          onDelete={() => handleDeleteTodo(index)}
+      <div className="input-container">
+        <input
+          type="text"
+          placeholder="Enter a todo"
+          value={inputValue}
+          onChange={(e) => setInputValue(e.target.value)}
         />
-      ))}
+        <button onClick={handleAddTodo}>Add</button>
+      </div>
+      <ul className="todo-list">
+        {todos.map((todo, index) => (
+          <li key={index}>
+            <TodoItem
+              text={todo}
+              onDelete={() => handleDeleteTodo(index)}
+            />
+          </li>
+        ))}
+      </ul>
     </div>
   );
 };
